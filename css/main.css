@@ -1269,10 +1269,12 @@ pre .javascript .function {
 .post-body p a {
   color: #0593d3;
   border-bottom: none;
+  border-bottom: 1px solid #0593d3;
 }
 .post-body p a:hover {
-  color: #ff106c;
-  text-decoration: underline;
+  color: #fc6423;
+  border-bottom: none;
+  border-bottom: 1px solid #fc6423;
 }
 .posts-expand {
   padding-top: 40px;
@@ -1467,6 +1469,7 @@ pre .javascript .function {
 }
 .posts-expand .post-title-link {
   display: inline-block;
+  position: relative;
   border-bottom: none;
   line-height: 1.2;
   vertical-align: top;
@@ -1663,6 +1666,57 @@ pre .javascript .function {
 }
 .rtl.post-title {
   font-family: UKIJ Ekran;
+}
+.my_post_copyright {
+  width: 85%;
+  max-width: 45em;
+  margin: 2.8em auto 0;
+  padding: 0.5em 1em;
+  border: 1px solid #d3d3d3;
+  font-size: 0.93rem;
+  line-height: 1.6em;
+  word-break: break-all;
+  background: rgba(255,255,255,0.4);
+}
+.my_post_copyright p {
+  margin: 0;
+}
+.my_post_copyright span {
+  display: inline-block;
+  width: 5.2em;
+  color: #b5b5b5;
+  font-weight: bold;
+}
+.my_post_copyright .raw {
+  margin-left: 1em;
+  width: 5em;
+}
+.my_post_copyright a {
+  color: #808080;
+  border-bottom: 0;
+}
+.my_post_copyright a:hover {
+  color: #a3d2a3;
+  text-decoration: underline;
+}
+.my_post_copyright:hover .fa-clipboard {
+  color: #000;
+}
+.my_post_copyright .post-url:hover {
+  font-weight: normal;
+}
+.my_post_copyright .copy-path {
+  margin-left: 1em;
+  width: 1em;
+}
+@media (max-width: 767px) {
+  .my_post_copyright .copy-path {
+    display: none;
+  }
+}
+.my_post_copyright .copy-path:hover {
+  color: #808080;
+  cursor: pointer;
 }
 .sidebar {
   position: fixed;
@@ -1932,7 +1986,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #707a50;
+  background: #4a5e01;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3091,6 +3145,87 @@ hr {
     text-align: center;
   }
 }
+.header {
+  background: url("http://puvp08ckl.bkt.clouddn.com/header_background.jpg");
+}
+.site-subtitle {
+  display: initial;
+  font-size: 15px;
+  color: #fff;
+}
+.site-title {
+  font-size: 45px;
+  font-weight: bolder;
+  vertical-align: super;
+  line-height: 40px;
+}
+.site-meta .site-title {
+  font-size: 45px;
+  font-weight: bolder;
+}
+.site-meta {
+  float: none;
+  margin: 0;
+  text-align: center;
+}
+.brand {
+  background: transparent;
+}
+.menu {
+  float: initial;
+  margin: 8px 0px 6px 0px;
+  margin-top: 40px;
+  padding-left: 0;
+  text-align: center;
+  background: rgba(240,240,240,0.5);
+  margin-left: auto;
+  margin-right: auto;
+  width: 600px;
+  border-radius: initial;
+  -webkit-box-shadow: 0 0 15px #590016;
+}
+.menu .menu-item a {
+  font-size: 14px;
+}
+.menu .menu-item a:hover {
+  border-bottom-color: #ff106c;
+}
+.site-description {
+  font-size: 16px;
+}
+.header-inner {
+  padding: 50px 0 20px;
+  width: 700px;
+}
+.site-author-name {
+  font-family: 'Comic Sans MS', sans-serif;
+  font-size: 20px;
+}
+.brand {
+  position: relative;
+  display: inline-block;
+  padding: 0 40px;
+  color: #fff;
+  background: #222;
+  border-bottom: none;
+}
+.logo-line-before i,
+.logo-line-after i {
+  position: unset;
+  display: block;
+  height: 2px;
+  background: #fff;
+}
+.posts-expand .post-eof {
+  margin: 40px auto 40px;
+  background: #fff;
+}
+strong {
+  color: #750c0c;
+}
+.posts-expand .post-title-link::before {
+  background-image: linear-gradient(90deg, #a166ab 0%, #ef4e7b 25%, #f37055 50%, #ef4e7b 75%, #a166ab 100%);
+}
 #heart {
   animation: heartAnimate 1.33s ease-in-out infinite;
 }
@@ -3305,6 +3440,12 @@ p#div-border-top-purple {
   padding: 25px;
   -webkit-box-shadow: 0 0 5px rgba(202,203,203,0.5);
   -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
+}
+* {
+  cursor: url("http://puvp08ckl.bkt.clouddn.com/basketball_24px_1172275_easyicon.net.ico"), auto !important;
+}
+:active {
+  cursor: url("http://puvp08ckl.bkt.clouddn.com/basketball_24px_1172275_easyicon.net.ico"), auto !important;
 }
 @-moz-keyframes heartAnimate {
   0%, 100% {
