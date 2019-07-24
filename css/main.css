@@ -1986,7 +1986,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #57ff42;
+  background: #c6fffa;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3451,6 +3451,20 @@ p#div-border-top-purple {
 }
 :active {
   cursor: url("http://puvp08ckl.bkt.clouddn.com/wizard_32px_1232496_easyicon.net.ico"), auto !important;
+}
+.out-img-topic {
+  display: block;
+  max-height: 300px;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+img.img-topic {
+  display: block;
+  margin-left: 0.7em;
+  margin-right: 0.7em;
+  padding: 0;
+  float: right;
+  clear: right;
 }
 @font-face {
   font-family: 'Comic Neue';
