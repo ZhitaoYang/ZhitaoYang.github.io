@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[TetraMAX安装以及将.stil或者.wgl文件转为.v]]></title>
+    <url>%2F2019%2F08%2F21%2F1%2F</url>
+    <content type="text"><![CDATA[摘要 ：近来实习的时候，遇到需要将 .stil 或者 .wgl 文件转化为 .v 的文件，作为 Test bench 来对设计进行测试，在此记录下所用的方法。 简介TetraMAX 是一个高速，高性能的自动测试激励产生工具 （ATPG automatic test patterngeneration)，它能使用最少的测试向量来产生最大测试覆盖的测试激励。TetraMAX 是 synopsys公司的测试工具，它可以和很多EDA工具一起来完成测试工作。 TetraMAX 安装安装包下载TetraMAX 的安装包可以在各个地方都能找到，我这里也提供一个百度云的链接，版本是2015.06的。TetraMAX 15.06提取码：qnxx 安装包导入因为我是在 windows 下下载的压缩包，而我需要将这个软件装到我们的linux服务器上，首先要将此文件从 windows 传入 linux。我用的是 secureCRT 这个软件的 sftp 来传输文件，当然传输文件的方法很多，只要百度一下就行。在 secureCRT 连接到服务器之后，点击 file –&gt; Connect SFTP Session 进入 sftp 的命令行，此时用 lcd 来进入本地需要传输文件的路径，l 表示 local，可用类似的命令 lcd，lls 等来查看本地的目录，不加 l 表示服务器上的目录。 将本地路径调为需要传输的文件所在目录，将服务器路径调为需要放置文件的目录，然后使用 put yourfile 来传输文件。压缩包传入之后，自然是用 linux 下的解压缩命令来解压，我的是 .tar.gz 文件，使用命令tar -zxvf yourfile.tar.gz -C /tools/Synopsys/TetraMAX。 环境配置在用户目录 ~ 下的 .bashrc 文件里，加入以下代码： 1234#TetraMAXexport PATH=$PATH:/home/users/project/tools/Synopsys/TetraMAX/k-2015.06/binexport TMAX_HOME=/home/users/project/tools/Synopsys/TetraMAX/k-2015.06alias tmax = &quot;tmax -gui&quot; 注意里面的路径是你的文件夹所在路径，然后执行 source ~/.bashrc 来使其立刻生效。 文件转换然后便可以建一个文件夹，打开终端，输入 tmax 来打开 TetraMAX 的图像化界面了。打开图行化界面之后，输入命令 stil2verilog STIL_pattern_file_name Verilog_Testbench_file_name 即可，也可以用图像化界面 Patterns –&gt; Writte Testbench 来选择要转化的文件。转化出来的 .v 文件就可以直接作为 Test Bench 来做测试了。]]></content>
+      <categories>
+        <category>TetraMAX</category>
+      </categories>
+      <tags>
+        <tag>TetraMAX</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[PCM的A-law和μ-law的理解]]></title>
     <url>%2F2019%2F08%2F09%2F1%2F</url>
     <content type="text"><![CDATA[摘要 ：PCM(Pulse code modulation) 脉冲编码调制是一种常见的数字化量化模拟波形的方式，其中有两个常用的压缩算法，A-law 和 μ-law 算法。 简介在语音编码的情况下，8kHz采样频率 &amp; 13bits线性量化是准确产生全域语音信号的数字表示的最小需求，对许多的有线或者无线的传输系统来说，即便只是带宽，已经算是一个昂贵的方式 (expensive proposition)。为了解决这个问题，通常会使用压缩算法，即A-law，和 μ-law。这两种非线性压缩算法是为了将采样到 12 或者 13bits 的幅值数据转化为 8bits，其中 A-law 是欧洲公认的标准，μ-law 是美国日本公认的标准。 μ-law数学模型 注：sgn(x) 为阶跃函数，在此，x = 0 时 sgn(0) = 0；x &gt; 0 时，sgn = 1；x &lt; 0 时，sgn = -1；μ-law 可由以上数学公式定义，其中 μ = 255，x 为归一化的值，此函数的线性逼近曲线如下图。注意此图只显示了 x &gt; = 0 的情况。 压缩编码 μ-law 的具体编码方式如上表所示，注意符号位并未显示，在 μ-law 中，符号位 = 1 表示正，符号位 = 0 表示负，在 13 位数据输入后，舍掉前面的 0，以第一个 bit 为 1 处作为 chord，这个 bit 为 1 将会被编码成 3 bit 的二进制数，即 Compressed Code Word 里，符号位后面三位，随后的 4 个 bit abcd 保持不变，d 之后的位数被舍掉。你可能发现，在举出的编码方式中，没有输入数据 bit4 为 1，前面全为 0 的情况，这是因为我们只有 3 个 bit 来表示 chord，也就是说只能从 bit12 到 bit5，为了解决这个问题，μ-law 规定在压缩之前，在去掉符号位之后，在传入的数据上加上 33，这样就能够避免之前的情况，即便采样值为 0，传入的数据第 5 个 bit 仍然可以为 1。 另外注意，在传输之前，会再将压缩后的编码反转一次，因为通常来说，低振幅信号比高振幅信号多，反转使得传输线上正脉冲的密度增加，可以提高硬件的性能。 解码解码操作本质上就是压缩编码的反向过程，只是之前舍掉的 abcd 后面的位数，由在 abcd 后面补充一个 1，也就是取区间的中间值来补充上。注意先反转回去。如下图所示，未显示符号位。 这种算法的动态范围也可以由以下的式子算出： 其中 8159 为可能的最大幅值，31 为到达第一个 chord 的最低幅值。 A-law数学模型 A-law 可由以上函数方程表示，A = 87.7，x 为归一化的参数，sgn 为阶跃函数，此函数的线性逼近曲线如下图。注意此图只显示了x &gt; = 0 的情况。 压缩编码 编码表如上图所示，符号位未显示，编码方式与 μ-law 类似，不同的是符号位与 μ-law 相反，A-law 中，符号位为 1 表示负，符号位为 0 表示正，且 A-law 只能接受幅值为 12bit 的输入数据，这也使得其 chord 的定义有所不同。舍掉前面的 0，从 11-5bit 为 1，分别由三位的二进制数 6-5bit 编码，不同的是 ‘000’ 的情况表示从 11bit 到 5bit 都为 0 的情况，abcd 取 4~1 位，0bit 舍掉。 另外，与 μ-law 一样，在传输之前仍然要进行一次反转，来提高硬件性能。 解码解码的本质就是颠倒编码的步骤，解码表如下图所示。也是与 μ-law 类似，在之后补一个 1，也就是取中间值。注意先反转回去。 这种算法的动态范围也可以由以下的式子算出： 其中 4096 为可能的最大幅值，15 为到达第一个 chord 的最低幅值。]]></content>
