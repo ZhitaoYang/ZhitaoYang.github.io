@@ -1,0 +1,507 @@
+// Custom styles.
+// 页面头部背景
+.header {
+    background: url(https://i.loli.net/2019/08/21/NPpWv5hZtbBfdYH.jpg);
+}
+
+.back-to-top.back-to-top-on {
+    bottom: 9px;
+}
+
+// 子标题
+.site-subtitle{ 
+    display: initial;
+    font-size: 20px;
+    color: white;
+    font-family: 'Comic Neue';
+    }
+
+// 标题
+.site-title {
+    font-size: 65px;
+    font-weight: bolder;
+    vertical-align: super;
+    line-height: 40px;
+    font-family: 'Comic Neue';
+}
+.site-meta .site-title {
+    font-size: 65px;
+    font-weight: bolder;
+}
+//名字居中
+.site-meta{
+    float: none;
+    margin: 0;
+    text-align: center;
+
+}
+// 标题背景
+.brand{
+    background: transparent;
+}
+
+// 菜单栏
+body {
+    line-height: 3;
+}
+.menu {
+    float: initial
+    margin: 8px 0px 6px 0px
+	margin-top: 40px;
+	padding-left: 0;
+	text-align: center;
+	background: rgba(240, 240, 240, 0.5);
+	margin-left: auto;
+	margin-right: auto;
+	width: 600px;
+	border-radius: initial;
+	-webkit-box-shadow: 0 0 15px #590016;
+}
+// 菜单字体大小
+.menu .menu-item a {
+    font-size: 14px;
+}
+.menu .menu-item a:hover {
+    border-bottom-color: #ff106c;
+}
+// 站点描述
+.site-description {
+    font-size: 16px;
+}
+// 头部inner
+.header-inner {
+    padding: 20px 0 20px;
+    width: 700px;
+}
+// 作者名
+.site-author-name {
+    font-family: 'Comic Sans MS', sans-serif;
+    font-size: 20px;
+}
+//作者名颜色
+.brand {
+    position: relative;
+    display: inline-block;
+    padding: 0 40px;
+    color: #fff;
+    background: #222;
+    border-bottom: none;
+}
+//作者名下划线去掉
+.logo-line-before i, .logo-line-after i {
+    position: unset;
+    display: block;
+    height: 2px;
+    background: #fff;
+}
+// 文章之间的分割线
+.posts-expand .post-eof {
+    margin: 40px auto 40px;
+    background: white;
+}
+// 粗体字样式
+strong {
+    color: #750c0c;
+}
+// 文章标题动态效果 next/source/css/_common/components/post/post-title.styl中.posts-expand .post-title-link确保`position: relative;`属性存在，如果需要标题呈现链接效果颜色，将`color`元素去除即可
+.posts-expand .post-title-link::before {
+    background-image: linear-gradient(90deg, #a166ab 0%, #ef4e7b 25%, #f37055 50%, #ef4e7b 75%, #a166ab 100%);
+}
+// 1 页脚加闪烁红心
+// 自定义页脚跳动的心样式
+@keyframes heartAnimate {
+    0%,100%{transform:scale(1);}
+    10%,30%{transform:scale(0.9);}
+    20%,40%,60%,80%{transform:scale(1.1);}
+    50%,70%{transform:scale(1.1);}
+}
+#heart {
+    animation: heartAnimate 1.33s ease-in-out infinite;
+}
+.with-love {
+    color: rgb(192, 0, 39);
+}
+
+// 下载样式
+a#download {
+display: inline-block;
+padding: 0 10px;
+color: #000;
+background: transparent;
+border: 2px solid #000;
+border-radius: 2px;
+transition: all .5s ease;
+font-weight: bold;
+&:hover {
+background: #000;
+color: #fff;
+}
+}
+/ /颜色块-黄
+span#inline-yellow {
+display:inline;
+padding:.2em .6em .3em;
+font-size:80%;
+font-weight:bold;
+line-height:1;
+color:#fff;
+text-align:center;
+white-space:nowrap;
+vertical-align:baseline;
+border-radius:0;
+background-color: #f0ad4e;
+}
+// 颜色块-绿
+span#inline-green {
+display:inline;
+padding:.2em .6em .3em;
+font-size:80%;
+font-weight:bold;
+line-height:1;
+color:#fff;
+text-align:center;
+white-space:nowrap;
+vertical-align:baseline;
+border-radius:0;
+background-color: #5cb85c;
+}
+// 颜色块-蓝
+span#inline-blue {
+display:inline;
+padding:.2em .6em .3em;
+font-size:80%;
+font-weight:bold;
+line-height:1;
+color:#fff;
+text-align:center;
+white-space:nowrap;
+vertical-align:baseline;
+border-radius:0;
+background-color: #2780e3;
+}
+// 颜色块-紫
+span#inline-purple {
+display:inline;
+padding:.2em .6em .3em;
+font-size:80%;
+font-weight:bold;
+line-height:1;
+color:#fff;
+text-align:center;
+white-space:nowrap;
+vertical-align:baseline;
+border-radius:0;
+background-color: #9954bb;
+}
+// 左侧边框红色块级
+p#div-border-left-red {
+display: block;
+padding: 10px;
+margin: 10px 0;
+border: 1px solid #ccc;
+border-left-width: 5px;
+border-radius: 3px;
+border-left-color: #df3e3e;
+}
+// 左侧边框黄色块级
+p#div-border-left-yellow {
+display: block;
+padding: 10px;
+margin: 10px 0;
+border: 1px solid #ccc;
+border-left-width: 5px;
+border-radius: 3px;
+border-left-color: #f0ad4e;
+}
+// 左侧边框绿色块级
+p#div-border-left-green {
+display: block;
+padding: 10px;
+margin: 10px 0;
+border: 1px solid #ccc;
+border-left-width: 5px;
+border-radius: 3px;
+border-left-color: #5cb85c;
+}
+// 左侧边框蓝色块级
+p#div-border-left-blue {
+display: block;
+padding: 10px;
+margin: 10px 0;
+border: 1px solid #ccc;
+border-left-width: 5px;
+border-radius: 3px;
+border-left-color: #2780e3;
+}
+// 左侧边框紫色块级
+p#div-border-left-purple {
+display: block;
+padding: 10px;
+margin: 10px 0;
+border: 1px solid #ccc;
+border-left-width: 5px;
+border-radius: 3px;
+border-left-color: #9954bb;
+}
+// 右侧边框红色块级
+p#div-border-right-red {
+display: block;
+padding: 10px;
+margin: 10px 0;
+border: 1px solid #ccc;
+border-right-width: 5px;
+border-radius: 3px;
+border-right-color: #df3e3e;
+}
+// 右侧边框黄色块级
+p#div-border-right-yellow {
+display: block;
+padding: 10px;
+margin: 10px 0;
+border: 1px solid #ccc;
+border-right-width: 5px;
+border-radius: 3px;
+border-right-color: #f0ad4e;
+}
+// 右侧边框绿色块级
+p#div-border-right-green {
+display: block;
+padding: 10px;
+margin: 10px 0;
+border: 1px solid #ccc;
+border-right-width: 5px;
+border-radius: 3px;
+border-right-color: #5cb85c;
+}
+// 右侧边框蓝色块级
+p#div-border-right-blue {
+display: block;
+padding: 10px;
+margin: 10px 0;
+border: 1px solid #ccc;
+border-right-width: 5px;
+border-radius: 3px;
+border-right-color: #2780e3;
+}
+// 右侧边框紫色块级
+p#div-border-right-purple {
+display: block;
+padding: 10px;
+margin: 10px 0;
+border: 1px solid #ccc;
+border-right-width: 5px;
+border-radius: 3px;
+border-right-color: #9954bb;
+}
+// 上侧边框红色
+p#div-border-top-red {
+display: block;
+padding: 10px;
+margin: 10px 0;
+border: 1px solid #ccc;
+border-top-width: 5px;
+border-radius: 3px;
+border-top-color: #df3e3e;
+}
+// 上侧边框黄色
+p#div-border-top-yellow {
+display: block;
+padding: 10px;
+margin: 10px 0;
+border: 1px solid #ccc;
+border-top-width: 5px;
+border-radius: 3px;
+border-top-color: #f0ad4e;
+}
+// 上侧边框绿色
+p#div-border-top-green {
+display: block;
+padding: 10px;
+margin: 10px 0;
+border: 1px solid #ccc;
+border-top-width: 5px;
+border-radius: 3px;
+border-top-color: #5cb85c;
+}
+// 上侧边框蓝色
+p#div-border-top-blue {
+display: block;
+padding: 10px;
+margin: 10px 0;
+border: 1px solid #ccc;
+border-top-width: 5px;
+border-radius: 3px;
+border-top-color: #2780e3;
+}
+// 上侧边框紫色
+p#div-border-top-purple {
+display: block;
+padding: 10px;
+margin: 10px 0;
+border: 1px solid #ccc;
+border-top-width: 5px;
+border-radius: 3px;
+border-top-color: #9954bb;
+}
+
+.post {
+  margin-top: 60px;
+  margin-bottom: 60px;
+  padding: 25px;
+  -webkit-box-shadow: 0 0 5px rgba(202, 203, 203, .5);
+  -moz-box-shadow: 0 0 5px rgba(202, 203, 204, .5);
+ }
+
+// 鼠标样式
+  * {
+      cursor: url("https://i.loli.net/2019/08/21/mDdgEO9KqYk6XHF.png"),auto!important
+  }
+  :active {
+      cursor: url("https://i.loli.net/2019/08/21/mDdgEO9KqYk6XHF.png"),auto!important
+  }
+
+//图片外部的容器方框 
+.out-img-topic {
+  display: block;
+  max-height:300px;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+//图片
+img.img-topic {
+  display: block ;
+  margin-left: .7em;
+  margin-right: .7em;
+  padding: 0;
+  float: right;
+  clear: right;
+}
+
+
+//字体
+@font-face {
+  font-family: 'Comic Neue';
+  src: url('/fonts/ComicNeue-Light.eot');
+  src: url('/fonts/ComicNeue-Light.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/ComicNeue-Light.woff2') format('woff2'),
+       url('/fonts/ComicNeue-Light.woff') format('woff'),
+       url('/fonts/ComicNeue-Light.ttf')  format('truetype');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Comic Neue';
+  src: url('/fonts/ComicNeue-Light-Oblique.eot');
+  src: url('/fonts/ComicNeue-Light-Oblique.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/ComicNeue-Light-Oblique.woff2') format('woff2'),
+       url('/fonts/ComicNeue-Light-Oblique.woff') format('woff'),
+       url('/fonts/ComicNeue-Light-Oblique.ttf')  format('truetype');
+  font-weight: 300;
+  font-style: oblique;
+}
+
+@font-face {
+  font-family: 'Comic Neue';
+  src: url('/fonts/ComicNeue-Regular.eot');
+  src: url('/fonts/ComicNeue-Regular.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/ComicNeue-Regular.woff2') format('woff2'),
+       url('/fonts/ComicNeue-Regular.woff') format('woff'),
+       url('/fonts/ComicNeue-Regular.ttf')  format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Comic Neue';
+  src: url('/fonts/ComicNeue-Regular-Oblique.eot');
+  src: url('/fonts/ComicNeue-Regular-Oblique.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/ComicNeue-Regular-Oblique.woff2') format('woff2'),
+       url('/fonts/ComicNeue-Regular-Oblique.woff') format('woff'),
+       url('/fonts/ComicNeue-Regular-Oblique.ttf')  format('truetype');
+  font-weight: 400;
+  font-style: oblique;
+}
+
+@font-face {
+  font-family: 'Comic Neue';
+  src: url('/fonts/ComicNeue-Bold.eot');
+  src: url('/fonts/ComicNeue-Bold.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/ComicNeue-Bold.woff2') format('woff2'),
+       url('/fonts/ComicNeue-Bold.woff') format('woff'),
+       url('/fonts/ComicNeue-Bold.ttf')  format('truetype');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Comic Neue';
+  src: url('/fonts/ComicNeue-Bold-Oblique.eot');
+  src: url('/fonts/ComicNeue-Bold-Oblique.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/ComicNeue-Bold-Oblique.woff2') format('woff2'),
+       url('/fonts/ComicNeue-Bold-Oblique.woff') format('woff'),
+       url('/fonts/ComicNeue-Bold-Oblique.ttf')  format('truetype');
+  font-weight: 700;
+  font-style: oblique;
+}
+
+@font-face {
+  font-family: 'Comic Neue Angular';
+  src: url('/fonts/ComicNeue-Angular-Light.eot');
+  src: url('/fonts/ComicNeue-Angular-Light.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/ComicNeue-Angular-Light.woff2') format('woff2'),
+       url('/fonts/ComicNeue-Angular-Light.woff') format('woff'),
+       url('/fonts/ComicNeue-Angular-Light.ttf')  format('truetype');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Comic Neue Angular';
+  src: url('/fonts/ComicNeue-Angular-Light-Oblique.eot');
+  src: url('/fonts/ComicNeue-Angular-Light-Oblique.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/ComicNeue-Angular-Light-Oblique.woff2') format('woff2'),
+       url('/fonts/ComicNeue-Angular-Light-Oblique.woff') format('woff'),
+       url('/fonts/ComicNeue-Angular-Light-Oblique.ttf')  format('truetype');
+  font-weight: 300;
+  font-style: oblique;
+}
+
+@font-face {
+  font-family: 'Comic Neue Angular';
+  src: url('/fonts/ComicNeue-Angular-Regular.eot');
+  src: url('/fonts/ComicNeue-Angular-Regular.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/ComicNeue-Angular-Regular.woff2') format('woff2'),
+       url('/fonts/ComicNeue-Angular-Regular.woff') format('woff'),
+       url('/fonts/ComicNeue-Angular-Regular.ttf')  format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Comic Neue Angular';
+  src: url('/fonts/ComicNeue-Angular-Regular-Oblique.eot');
+  src: url('/fonts/ComicNeue-Angular-Regular-Oblique.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/ComicNeue-Angular-Regular-Oblique.woff2') format('woff2'),
+       url('/fonts/ComicNeue-Angular-Regular-Oblique.woff') format('woff'),
+       url('/fonts/ComicNeue-Angular-Regular-Oblique.ttf')  format('truetype');
+  font-weight: 400;
+  font-style: oblique;
+}
+
+@font-face {
+  font-family: 'Comic Neue Angular';
+  src: url('/fonts/ComicNeue-Angular-Bold.eot');
+  src: url('/fonts/ComicNeue-Angular-Bold.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/ComicNeue-Angular-Bold.woff2') format('woff2'),
+       url('/fonts/ComicNeue-Angular-Bold.woff') format('woff'),
+       url('/fonts/ComicNeue-Angular-Bold.ttf')  format('truetype');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Comic Neue Angular';
+  src: url('/fonts/ComicNeue-Angular-Bold-Oblique.eot');
+  src: url('/fonts/ComicNeue-Angular-Bold-Oblique.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/ComicNeue-Angular-Bold-Oblique.woff2') format('woff2'),
+       url('/fonts/ComicNeue-Angular-Bold-Oblique.woff') format('woff'),
+       url('/fonts/ComicNeue-Angular-Bold-Oblique.ttf')  format('truetype');
+  font-weight: 700;
+  font-style: oblique;
+}
+
