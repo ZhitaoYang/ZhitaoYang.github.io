@@ -111,7 +111,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Ubuntu,ssh,">
 
 
 
@@ -124,18 +124,18 @@
 
 
 
-<meta name="description" content="学习使我快乐by TT">
-<meta name="keywords" content="日常，学习">
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://lovekawhi.top/about/index.html">
+<meta name="description" content="配置Ubuntu允许远程SSH连接1Sudo vim /etc/ssh/sshd_config   PermitRootLogin yes PasswordAuthentication yes  1Sudo -i service sshd restart   12* ```ssh root@ip  先-i``` 进入root权限  12  ```wget --no-check-certificat">
+<meta name="keywords" content="Ubuntu,ssh">
+<meta property="og:type" content="article">
+<meta property="og:title" content="配置Ubuntu允许远程SSH连接">
+<meta property="og:url" content="http://lovekawhi.top/2020/01/09/1/index.html">
 <meta property="og:site_name" content="LoveKawhi">
-<meta property="og:description" content="学习使我快乐by TT">
+<meta property="og:description" content="配置Ubuntu允许远程SSH连接1Sudo vim /etc/ssh/sshd_config   PermitRootLogin yes PasswordAuthentication yes  1Sudo -i service sshd restart   12* ```ssh root@ip  先-i``` 进入root权限  12  ```wget --no-check-certificat">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-01-09T06:01:28.679Z">
+<meta property="og:updated_time" content="2020-01-09T06:16:04.504Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="about">
-<meta name="twitter:description" content="学习使我快乐by TT">
+<meta name="twitter:title" content="配置Ubuntu允许远程SSH连接">
+<meta name="twitter:description" content="配置Ubuntu允许远程SSH连接1Sudo vim /etc/ssh/sshd_config   PermitRootLogin yes PasswordAuthentication yes  1Sudo -i service sshd restart   12* ```ssh root@ip  先-i``` 进入root权限  12  ```wget --no-check-certificat">
 
 
 
@@ -176,13 +176,13 @@
 
 
 
-  <link rel="canonical" href="http://lovekawhi.top/about/">
+  <link rel="canonical" href="http://lovekawhi.top/2020/01/09/1/">
 
 
 
 
 
-  <title>about | LoveKawhi</title>
+  <title>配置Ubuntu允许远程SSH连接 | LoveKawhi</title>
   
 
 
@@ -308,33 +308,260 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lovekawhi.top/2020/01/09/1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LoveKawhi">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://i.loli.net/2019/08/12/kMsqO1cIpmv7fDh.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LoveKawhi">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">about</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <h1 id="学习使我快乐"><a href="#学习使我快乐" class="headerlink" title="学习使我快乐"></a>学习使我快乐</h1><h2 id="by-TT"><a href="#by-TT" class="headerlink" title="by TT"></a>by TT</h2>
+          <h1 class="post-title" itemprop="name headline">配置Ubuntu允许远程SSH连接</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-09T14:09:40+08:00">
+                2020-01-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          <!-- 在下面的位置加上如下代码 -->
+            <span id="busuanzi_container_page_pv">
+            &nbsp; | &nbsp; 热度&nbsp; <span id="busuanzi_value_page_pv"></span>°C
+            </span>
+          <!-- 在上面的位置加上如上代码 -->    
+
+          
+            
+          
+
+          
+          
+
+          
+
+
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  91 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1 分钟 
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h1 id="配置Ubuntu允许远程SSH连接"><a href="#配置Ubuntu允许远程SSH连接" class="headerlink" title="配置Ubuntu允许远程SSH连接"></a>配置Ubuntu允许远程SSH连接</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Sudo vim /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>PermitRootLogin yes</li>
+<li>PasswordAuthentication yes</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Sudo -i service sshd restart</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* ```ssh root@ip</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>先<figure class="highlight plain"><figcaption><span>-i``` 进入root权限  </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">```wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh &amp;&amp; chmod +x bbr.sh &amp;&amp; ./bbr.sh</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<figure class="highlight plain"><figcaption><span>--no-check-certificate -O shadowsocks-all.sh</span><a href="https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh```" target="_blank" rel="noopener">link</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">```chmod +x shadowsocks-all.sh</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><figcaption><span>2>&1 | tee shadowsocks-all.log```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* 选择go</span><br></pre></td></tr></table></figure>
+
+<p>/etc/init.d/shadowsocks-go restart<br>Service sshd restart<br>Service ssh restart</p>
+<pre><code>### 完成</code></pre>
       
     </div>
     
     
     
+
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    
+
+    
+
+    
+
+<div>
+	    <p id="div-border-left-red">
+        <b><span>本文标题:</span><a href="/2020/01/09/1/">配置Ubuntu允许远程SSH连接</a></b><br>
+        <b><span>文章作者:</span><a href="/" title="访问 LoveKawhi 的个人博客">LoveKawhi</a></b><br>
+	      <b>本文基于<a target="_blank" title="Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)" href="http://creativecommons.org/licenses/by-sa/4.0/"> 知识共享署名-相同方式共享 4.0 </a>国际许可协议发布</b><br>
+	      <span>
+	      <b>本文地址: </b><a href="/2020/01/09/1/" title="配置Ubuntu允许远程SSH连接">http://lovekawhi.top/2020/01/09/1/</a><br>
+        <b>转载请注明出处, 谢谢！</b>
+	      </span>
+	    </p>
+</div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Ubuntu/" rel="tag"><i class="fa fa-tag"></i> Ubuntu</a>
+          
+            <a href="/tags/ssh/" rel="tag"><i class="fa fa-tag"></i> ssh</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/21/1/" rel="next" title="TetraMAX安装以及将.stil或者.wgl文件转为.v">
+                <i class="fa fa-chevron-left"></i> TetraMAX安装以及将.stil或者.wgl文件转为.v
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  
+
+
+
+    <div class="post-spread">
+      
+        <!--MOB SHARE BEGIN-->
+<div class="-hoofoo-share-title">分享到: </div>
+<div class="-hoofoo-share-buttons">
+    <div class="-mob-share-weibo -hoofoo-share-weibo -hoofoo-share-ui-button"><i class="fa fa-weibo" aria-hidden="true"></i></div>
+    <div class="-mob-share-weixin -hoofoo-share-weixin -hoofoo-share-ui-button"><i class="fa fa-weixin" aria-hidden="true"></i></div>
+    <div class="-mob-share-qq -hoofoo-share-qq -hoofoo-share-ui-button"><i class="fa fa-qq" aria-hidden="true"></i></div>
+    <div class="-mob-share-twitter -hoofoo-share-twitter -hoofoo-share-ui-button"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+    <div class="-hoofoo-share-more -hoofoo-share-ui-button -mob-share-open"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+</div>
+<div class="-mob-share-ui" style="display: none">
+    <ul class="-mob-share-list">
+        <li class="-mob-share-weibo"><p>新浪微博</p></li>
+        <li class="-mob-share-weixin"><p>微信</p></li>
+        <li class="-mob-share-qzone"><p>QQ空间</p></li>
+        <li class="-mob-share-qq"><p>QQ好友</p></li>
+        <li class="-mob-share-tencentweibo"><p>腾讯微博</p></li>
+        <li class="-mob-share-renren"><p>人人网</p></li>
+        <li class="-mob-share-kaixin"><p>开心网</p></li>
+        <li class="-mob-share-douban"><p>豆瓣</p></li>
+        <li class="-mob-share-youdao"><p>有道云笔记</p></li>
+        <li class="-mob-share-mingdao"><p>明道</p></li>
+        <li class="-mob-share-pengyou"><p>朋友网</p></li>
+        <li class="-mob-share-facebook"><p>Facebook</p></li>
+        <li class="-mob-share-twitter"><p>Twitter</p></li>
+        <li class="-mob-share-pocket"><p>Pocket</p></li>
+        <li class="-mob-share-google"><p>Google+</p></li>
+        <li class="-mob-share-tumblr"><p>Tumblr</p></li>
+        <li class="-mob-share-instapaper"><p>Instapaper</p></li>
+        <li class="-mob-share-linkedin"><p>Linkedin</p></li>
+    </ul>
+    <div class="-mob-share-close">取消</div>
+</div>
+<div class="-mob-share-ui-bg"></div>
+<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=2bc2bd58a9252"></script>
+<!--MOB SHARE END-->
+      
+    </div>
   </div>
 
 
@@ -478,7 +705,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#学习使我快乐"><span class="nav-number">1.</span> <span class="nav-text">学习使我快乐</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#by-TT"><span class="nav-number">1.1.</span> <span class="nav-text">by TT</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#配置Ubuntu允许远程SSH连接"><span class="nav-number">1.</span> <span class="nav-text">配置Ubuntu允许远程SSH连接</span></a></li></ol></div>
             
 
           </div>
