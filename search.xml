@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[配置Ubuntu允许远程SSH连接]]></title>
     <url>%2F2020%2F01%2F09%2F1%2F</url>
-    <content type="text"><![CDATA[配置Ubuntu允许远程SSH连接1Sudo vim /etc/ssh/sshd_config PermitRootLogin yes PasswordAuthentication yes 1Sudo -i service sshd restart 12* ```ssh root@ip 先-i``` 进入root权限 12 ```wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh &amp;&amp; chmod +x bbr.sh &amp;&amp; ./bbr.sh --no-check-certificate -O shadowsocks-all.shlink12```chmod +x shadowsocks-all.sh 2>&1 | tee shadowsocks-all.log```1* 选择go /etc/init.d/shadowsocks-go restartService sshd restartService ssh restart ### 完成]]></content>
+    <content type="text"><![CDATA[摘要： Ubuntu如何配置远程的ssh连接。 配置Ubuntu允许远程SSH连接1Sudo vim /etc/ssh/sshd_config PermitRootLogin yes PasswordAuthentication yes 1Sudo -i service sshd restart passwd改密码 ssh root@ip 先sudo -i 进入root权限 12345wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh &amp;&amp; chmod +x bbr.sh &amp;&amp; ./bbr.shwget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.shchmod +x shadowsocks-all.sh./shadowsocks-all.sh 2&gt;&amp;1 | tee shadowsocks-all.log 选择go 123/etc/init.d/shadowsocks-go restartService sshd restartService ssh restart 完成]]></content>
       <tags>
         <tag>Ubuntu</tag>
         <tag>ssh</tag>
