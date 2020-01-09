@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[TetraMAX安装以及将.stil或者.wgl文件转为.v]]></title>
+    <url>%2F2019%2F08%2F21%2F1%2F</url>
+    <content type="text"><![CDATA[摘要 ：近来实习的时候，遇到需要将 .stil 或者 .wgl 文件转化为 .v 的文件，作为 Test bench 来对设计进行测试，在此记录下所用的方法。 简介TetraMAX 是一个高速，高性能的自动测试激励产生工具 （ATPG automatic test patterngeneration)，它能使用最少的测试向量来产生最大测试覆盖的测试激励。TetraMAX 是 synopsys公司的测试工具，它可以和很多EDA工具一起来完成测试工作。 TetraMAX 安装安装包下载TetraMAX 的安装包可以在各个地方都能找到，我这里也提供一个百度云的链接，版本是2015.06的。TetraMAX 15.06提取码：qnxx 安装包导入因为我是在 windows 下下载的压缩包，而我需要将这个软件装到我们的linux服务器上，首先要将此文件从 windows 传入 linux。我用的是 secureCRT 这个软件的 sftp 来传输文件，当然传输文件的方法很多，只要百度一下就行。在 secureCRT 连接到服务器之后，点击 file –&gt; Connect SFTP Session 进入 sftp 的命令行，此时用 lcd 来进入本地需要传输文件的路径，l 表示 local，可用类似的命令 lcd，lls 等来查看本地的目录，不加 l 表示服务器上的目录。 将本地路径调为需要传输的文件所在目录，将服务器路径调为需要放置文件的目录，然后使用 put yourfile 来传输文件。压缩包传入之后，自然是用 linux 下的解压缩命令来解压，我的是 .tar.gz 文件，使用命令tar -zxvf yourfile.tar.gz -C /tools/Synopsys/TetraMAX。 环境配置在用户目录 ~ 下的 .bashrc 文件里，加入以下代码： 1234#TetraMAXexport PATH=$PATH:/home/users/project/tools/Synopsys/TetraMAX/k-2015.06/binexport TMAX_HOME=/home/users/project/tools/Synopsys/TetraMAX/k-2015.06alias tmax = &quot;tmax -gui&quot; 注意里面的路径是你的文件夹所在路径，然后执行 source ~/.bashrc 来使其立刻生效。 文件转换然后便可以建一个文件夹，打开终端，输入 tmax 来打开 TetraMAX 的图像化界面了。打开图行化界面之后，输入命令 stil2verilog STIL_pattern_file_name Verilog_Testbench_file_name 即可，也可以用图像化界面 Patterns –&gt; Writte Testbench 来选择要转化的文件。转化之后，会出来一个 .dat 和一个 .v 文件。转化出来的 .v 文件就可以直接作为 Test Bench 来做测试了。]]></content>
+      <categories>
+        <category>TetraMAX</category>
+      </categories>
+      <tags>
+        <tag>TetraMAX</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[PCM的A-law和μ-law的理解]]></title>
+    <url>%2F2019%2F08%2F09%2F1%2F</url>
+    <content type="text"><![CDATA[摘要 ：PCM(Pulse code modulation) 脉冲编码调制是一种常见的数字化量化模拟波形的方式，其中有两个常用的压缩算法，A-law 和 μ-law 算法。 简介在语音编码的情况下，8kHz采样频率 &amp; 13bits线性量化是准确产生全域语音信号的数字表示的最小需求，对许多的有线或者无线的传输系统来说，即便只是带宽，已经算是一个昂贵的方式 (expensive proposition)。为了解决这个问题，通常会使用压缩算法，即A-law，和 μ-law。这两种非线性压缩算法是为了将采样到 12 或者 13bits 的幅值数据转化为 8bits，其中 A-law 是欧洲公认的标准，μ-law 是美国日本公认的标准。 μ-law数学模型 注：sgn(x) 为阶跃函数，在此，x = 0 时 sgn(0) = 0；x &gt; 0 时，sgn = 1；x &lt; 0 时，sgn = -1；μ-law 可由以上数学公式定义，其中 μ = 255，x 为归一化的值，此函数的线性逼近曲线如下图。注意此图只显示了 x &gt; = 0 的情况。 压缩编码 μ-law 的具体编码方式如上表所示，注意符号位并未显示，在 μ-law 中，符号位 = 1 表示正，符号位 = 0 表示负，在 13 位数据输入后，舍掉前面的 0，以第一个 bit 为 1 处作为 chord，这个 bit 为 1 将会被编码成 3 bit 的二进制数，即 Compressed Code Word 里，符号位后面三位，随后的 4 个 bit abcd 保持不变，d 之后的位数被舍掉。你可能发现，在举出的编码方式中，没有输入数据 bit4 为 1，前面全为 0 的情况，这是因为我们只有 3 个 bit 来表示 chord，也就是说只能从 bit12 到 bit5，为了解决这个问题，μ-law 规定在压缩之前，在去掉符号位之后，在传入的数据上加上 33，这样就能够避免之前的情况，即便采样值为 0，传入的数据第 5 个 bit 仍然可以为 1。 另外注意，在传输之前，会再将压缩后的编码反转一次，因为通常来说，低振幅信号比高振幅信号多，反转使得传输线上正脉冲的密度增加，可以提高硬件的性能。 解码解码操作本质上就是压缩编码的反向过程，只是之前舍掉的 abcd 后面的位数，由在 abcd 后面补充一个 1，也就是取区间的中间值来补充上。注意先反转回去。如下图所示，未显示符号位。 这种算法的动态范围也可以由以下的式子算出： 其中 8159 为可能的最大幅值，31 为到达第一个 chord 的最低幅值。 A-law数学模型 A-law 可由以上函数方程表示，A = 87.7，x 为归一化的参数，sgn 为阶跃函数，此函数的线性逼近曲线如下图。注意此图只显示了x &gt; = 0 的情况。 压缩编码 编码表如上图所示，符号位未显示，编码方式与 μ-law 类似，不同的是符号位与 μ-law 相反，A-law 中，符号位为 1 表示负，符号位为 0 表示正，且 A-law 只能接受幅值为 12bit 的输入数据，这也使得其 chord 的定义有所不同。舍掉前面的 0，从 11-5bit 为 1，分别由三位的二进制数 6-5bit 编码，不同的是 ‘000’ 的情况表示从 11bit 到 5bit 都为 0 的情况，abcd 取 4~1 位，0bit 舍掉。 另外，与 μ-law 一样，在传输之前仍然要进行一次反转，来提高硬件性能。 解码解码的本质就是颠倒编码的步骤，解码表如下图所示。也是与 μ-law 类似，在之后补一个 1，也就是取中间值。注意先反转回去。 这种算法的动态范围也可以由以下的式子算出： 其中 4096 为可能的最大幅值，15 为到达第一个 chord 的最低幅值。]]></content>
+      <categories>
+        <category>protocol</category>
+      </categories>
+      <tags>
+        <tag>PCM</tag>
+        <tag>A-law</tag>
+        <tag>μ-law</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[对 I2C 总线协议的理解]]></title>
+    <url>%2F2019%2F07%2F24%2F1%2F</url>
+    <content type="text"><![CDATA[摘要： I2C 总线协议是一种非常普遍的协议，主要用在对于 master 主 (或者多个master) 与一个或者多个 slave 从设备之间的通信。 I2C 简要介绍I2C 全称 Inter-IC，由 Philip 公司在 80 年代发展起来，是一种简单的，低、中速的串行双向两线总线串口协议，包括 serial data (SDA) 和 serial clock (SCL)。其中 SDA 传输数据，SCL 为时钟。至今，I2C 已经是一种全球工厂的标准，被用在许多主要的 IC 制造中。特点包括：可以有多个主设备，支持主从通信模式，在同一时间，只能由两个设备占据总线，每个设备被唯一的地址编码。 图中给出了一个嵌入式系统中应用 I2C 的例子，其中包括一个主设备和多个从设备。Microcontroller or Processor 作为主设备控制连接在总线上的其他I2C设备。所有从设备都只用两个 pin 与主设备相接。 电学特性I2C 在同一条线上使用的是 Open-Drain/Open-Collector 加上一个 buffer ，这使得双向的数据流可以在一条单独的数据线上传输。 用在双向通信的 open-drain 设备Open-Drain 是指一种可以把总线拉到一个电压(通常是地)，或者释放总线，让它被一个上拉电阻拉高的输出。 图中给出了一个主从设备在SDA/SCL线上简单的示意图，包含一个 buffer 用来读取输入数据，一个下拉 mos 管来传输数据。这种设备只能够下拉到低或者上拉到高，这个原理导致了双向通信的产生。 Open-Drain 下拉总线如上文所诉，Open-Drain 能够将总线拉低， 或者释放总线让它被上拉电阻拉高，图中显示了将总线拉低时的电流走向。当我们想要逻辑部分传输一个低信号时，下拉 mos 管将被激活，这会导致其与地短接，从而使得总线被拉低。 Open-Drain 释放总线当主设备或者从设备想要传输一个高的逻辑时，可以选择关掉下拉 mos 管，从而使得电流只能从上方通过，然后由上拉电阻拉高，图中显示了这种情况下的电流走向。 I2C 串口I2C 的一般操作I2C 总线是一种双向串口标准，它使用被称为主设备的控制器来与其他从设备通信。从设备只有在被主设备“叫到”地址的时候才会传输数据。每一个连接在同一个 I2C 总线上的设备都有一个唯一的地址，许多的从设备需要进行配置来设置它的行为。这通常在主设备访问具有唯一寄存器地址的从设备的内部寄存器映射的时候完成。另外，一个设备可以有一个或者多个寄存器来存储或者写入数据。 物理上的 I2C 串口包括两条总线，serial clock (SCL) 和 serial data (SDA)。这两条线都需要通过一个上拉电阻连接到 Vcc。关于上拉电阻，它的大小是由 I2C 线上的电容所决定的，想知道具体的计算方式，可以参考 TI 的 SLVA689 文档。只有在总线空闲时才能够传输数据，在 STOP 信号之后，SDA 和 SCL 线都保持高的情况下，被认为时总线空闲状态。一般主设备与从设备通信有以下两种情况： 1 主设备想要传输数据到从设备： 主设备发送一个 START 信号然后寻址到想要的从设备地址 主设备将数据传输到从设备 主设备以 STOP 信号停止传输 2 主设备想要接受或者读取从设备中的数据： 主设备发送一个 START 信号，然后寻址到想要读取的从设备 主设备传输想要读的寄存器地址到从设备 主设备从从设备那里接受数据 主设备以 STOP 信号停止传输 START 和 STOPI2C 通信中，由主设备发送一个 START 信号表示开始，发送一个 STOP 信号表示停止。当 SCL 线为高的时候，如果 SDA 线有一个从高到低的变化，这就是一个 START 信号。当 SCL 线为高的时候，如果 SDA 线有一个从低到高的变化，那么这就是一个 STOP 信号。 重新开始信号 Repeated START (Sr)重新开始信号与 START 信号类似，不过它被用在代替一个 STOP 接着一个 START 信号的情况。它与 START 信号很像，但是又有所不同，因为它是发生在 STOP 信号之前的(当总线为忙)。这在主设备想要开始一个新的通信，但是又不想让总线由于 STOP 信号处于空闲状态时很有用，因为当总线由于 STOP 信号处于空闲状态时，这有可能会使得现在的主设备失去对总线的控制(在多主设备的环境下)。 数据有效性和字节格式 一位数据将在 SCL 的每个时钟脉冲时传输，在 SDA 线上一个字节包括八位数据，一个字节可能是表示一个设备的地址，寄存器的地址，写入从设备或者从从设备中读取的数据。数据从 Most Significant Bit (MSB) 开始传输，任何在 START 和 STOP 之间字节数据都可以从主设备传输到从设备。在 SDA 线上的数据，必须在 SCL 线为稳定保持高的情况下传输，如果不稳定的话，可能会符合 START 或者 STOP 的触发条件。 应答信号 ACK &amp; NACK任何一个字节的数据(包括地址)后面都会跟随一个从接收端发送的 ACK 应答信号。ACK 信号使得接收端与发送端能够进行通信，从而知道数据是否被成功的接收，或者有没有另一个信号被发送。 在接收端发送 ACK 信号之前，发送端需要释放 SDA 线。接收端需要在 ACK/NACK 的时钟周期内下拉 SDA 线来发送一个 ACK 信号，所以在这个时钟周期为高的时候，SDA 线为低(需要考虑 Setup- &amp; Hold- time)。当 SDA 线在 ACK/NACK 的时钟周期内保持为高的时候，这就是一个 NACK 信号，这里有几种产生 NACK 信号的情况： 1 接收端无法接收或者发送，因为它正在执行一些实时功能，并且没有准备好于注设备通信。2 在传输过程中，接收端收到了它无法理解的数据或者命令。3 在传输过程中，接收端无法接收更多的数据。4 主设备作为接收端时，向从设备发送“我已经接收完了数据”信号。 I2C 数据传输数据的传输或者接收是通过对从设备的寄存器进行读取或者写入操作来实现的。 寄存器是从设备内存中包含信息的位置，无论是配置信息，还是一些要发送回主机的采样数据。主设备必须将信息写入这些寄存器，以指示从设备执行任务。 虽然在 I2C 从设备中有寄存器是很常见的，但是请注意，并非所有的从设备都有寄存器。有些设备很简单，只有一个寄存器，所以想要写入数据的话，只需要在从设备的地址信息之后传输数据就行，而不需要传输寄存器的地址，类似的例子有 8 位的 I2C 开关，它只需要一位的信息去打开或者关闭通道，所以只需要一个寄存器，主设备只需要在地址信息之后直接传入要写入的数据就行。 在 I2C 总线中写入从设备 在写入过程中，主设备将发送一个 START 信号和一个从设备的地址(普通的为 7bits )加一位 R/W bit，这一位被设置为 0 来表示写入。在从设备发送 ACK 应答信号之后，主设备将会发送希望写入的寄存器的寄存器地址，接着，从设备将再次发送 ACK 应答信号，让这个主设备知道它已经准备好了。之后，主设备将开始发送数据到从设备，直到主设备将数据发送完(很多时候只是一个字节)，然后主设备将由一个 STOP 信号来停止传输。 在 I2C 总线中读取从设备 从从设备中读取数据于写入数据非常相似，为了从从设备中读取，主设备首先要指定它希望从中读取的从设备。这通过主设备发送地址和 R/W bit 为 0 (写入)，接着跟上希望读取的寄存器地址来完成。一旦从设备在此之后发送了 ACK 应答，主设备将再次发送一个 START 信号，然后跟上从设备地址于 R/W 为 1 (读取)。这个时候，从设备将相应读取操作，然后主设备释放 SDA 线，由从设备来控制 SDA 线传输数据，但是主设备仍然会继续提供时钟 SCL。在这个情况下，主设备变成了接收端，从设备编程了发送端。 知识补充I2C 协议中的数据 I2C 中共有三个模式，由上图列出，值得一提的是，I2C 一般是使用 7 bit来寻址，实际上也有 10 bit 的模式，能够使得 I2C 连接更多的设备。下图给出 7 bit 和 10 bit 的标准。 I2C 协议中的 Arbitration如果由两个主设备在同一个总线上，那么有一种情况可能会发生，那就是它们两个都想在同一时间控制总线，那么这种情况是怎么解决的呐？ 当这种情况发生的时候，他们将会产生几个时钟周期的 delay，然后这个时候，两个主设备将会被控制成，一个拉高，一个保持为低，此时拉高的作为主设备，在这个主设备的工作完成后，再执行另一个主设备的工作。 更多关于 I2C 的细节可以参考 TI 的 AN10216-01 文档。]]></content>
+      <categories>
+        <category>protocol</category>
+      </categories>
+      <tags>
+        <tag>I2C</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Markdown 语法的简要规则]]></title>
+    <url>%2F2019%2F07%2F20%2F1%2F</url>
+    <content type="text"><![CDATA[Markdown 语法的简要规则 标题在 Markdown 中，如果一段文字被定义为标题，只需要在这段文字前加#号即可，总共可有六级标题，即###### 列表无序列表只需在文字前加上-或*，有序列表则加上1. 2. 3.符号和文字间加空格 1 无序 1 2 无序 2 有序 1 有序 2引用只需要在文本前加入 &gt; 这种大于号即可 引用例子 图片与链接插入图片：插入图片需要插入图片的URL地址! [ ] ( )插入链接：Baidu比图片少一个!号 [ ] ( )粗体和斜体两个 * 包含文本是粗体，一个 * 包含一段文本是斜体 粗体 斜体 表格 Tables Are Cool col 3 is right-aligned $1600 col 2 is centered $12 zebra stripes are neat $1 代码框只需要三个`在首尾行把中间的代码包裹起来 1234567891011121314# 1 获取索引界面网页内容 def get_page_index(i): # 下载1页 # url = &apos;https://www.thepaper.cn/newsDetail_forward_2370041&apos; # 2下载多页，构造url paras = &#123; &apos;nodeids&apos;: 25635, &apos;pageidx&apos;: i &#125; url = &apos;https://www.thepaper.cn/load_index.jsp?&apos; + urlencode(paras) response = requests.get(url,headers = headers) if response.status_code == 200: return response.text # print(response.text) # 测试网页内容是否提取成功ok 下划线三个 * 号]]></content>
+      <tags>
+        <tag>Markdown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2019%2F07%2F19%2F1%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+      <categories>
+        <category>HelloWorld</category>
+      </categories>
+      <tags>
+        <tag>HelloWorld</tag>
+      </tags>
+  </entry>
+</search>

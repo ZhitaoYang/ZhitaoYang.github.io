@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+<style>
+    .pace .pace-progress {
+        background: #ff009e; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #ff009e, 0 0 5px #ff009e; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #ff009e;    /*上边框颜色*/
+        border-left-color: #ff009e;    /*左边框颜色*/
+    }
+</style>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo-shou.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="I2C,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="LoveKawhi" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="摘要： I2C 总线协议是一种非常普遍的协议，主要用在对于 master 主 (或者多个master) 与一个或者多个 slave 从设备之间的通信。">
+<meta name="keywords" content="I2C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="对 I2C 总线协议的理解">
+<meta property="og:url" content="http://lovekawhi.top/2019/07/24/1/index.html">
+<meta property="og:site_name" content="LoveKawhi">
+<meta property="og:description" content="摘要： I2C 总线协议是一种非常普遍的协议，主要用在对于 master 主 (或者多个master) 与一个或者多个 slave 从设备之间的通信。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.loli.net/2019/08/21/WFxDmIoktjw9RNu.png">
+<meta property="og:image" content="https://i.loli.net/2019/08/12/fej25bAcDJmd4yt.png">
+<meta property="og:image" content="https://i.loli.net/2019/08/12/StPm4yGRcEUpMDe.png">
+<meta property="og:image" content="https://i.loli.net/2019/08/12/1cAaBiqhboS3rtK.png">
+<meta property="og:image" content="https://i.loli.net/2019/08/12/IBPDUvluGVY1KX9.png">
+<meta property="og:image" content="https://i.loli.net/2019/08/12/qngbJRcL2GNlUxE.png">
+<meta property="og:image" content="https://i.loli.net/2019/08/12/5S2QURpLqgCKXZO.png">
+<meta property="og:image" content="https://i.loli.net/2019/08/12/vpyK4APwLFekhSC.png">
+<meta property="og:image" content="https://i.loli.net/2019/08/12/S9mUE65iRbTlZcp.png">
+<meta property="og:image" content="https://i.loli.net/2019/08/12/mb16cisn4ZAEwte.png">
+<meta property="og:image" content="https://i.loli.net/2019/08/12/tjPUS1Xinqzw2oA.png">
+<meta property="og:image" content="https://i.loli.net/2019/08/12/dSPpvaNHU5n8EXt.png">
+<meta property="og:image" content="https://i.loli.net/2019/08/12/tpLs9ROYArUwD5v.png">
+<meta property="og:updated_time" content="2020-01-09T06:01:28.679Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="对 I2C 总线协议的理解">
+<meta name="twitter:description" content="摘要： I2C 总线协议是一种非常普遍的协议，主要用在对于 master 主 (或者多个master) 与一个或者多个 slave 从设备之间的通信。">
+<meta name="twitter:image" content="https://i.loli.net/2019/08/21/WFxDmIoktjw9RNu.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+  <link rel="canonical" href="http://lovekawhi.top/2019/07/24/1/">
+
+
+
+
+
+  <title>对 I2C 总线协议的理解 | LoveKawhi</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container one_collum sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/ZhitaoYang" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#a60000; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">LoveKawhi</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Love kawhi, Love study</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首&emsp;&emsp;页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于博主
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标&emsp;&emsp;签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分&emsp;&emsp;类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归&emsp;&emsp;档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lovekawhi.top/2019/07/24/1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LoveKawhi">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://i.loli.net/2019/08/12/kMsqO1cIpmv7fDh.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LoveKawhi">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">对 I2C 总线协议的理解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-24T09:38:52+08:00">
+                2019-07-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/protocol/" itemprop="url" rel="index">
+                    <span itemprop="name">protocol</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          <!-- 在下面的位置加上如下代码 -->
+            <span id="busuanzi_container_page_pv">
+            &nbsp; | &nbsp; 热度&nbsp; <span id="busuanzi_value_page_pv"></span>°C
+            </span>
+          <!-- 在上面的位置加上如上代码 -->    
+
+          
+            
+          
+
+          
+          
+
+          
+
+
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.7k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  9 分钟 
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://i.loli.net/2019/08/21/WFxDmIoktjw9RNu.png" alt="I2C.png"></p>
+<p><strong>摘要</strong>： I2C 总线协议是一种非常普遍的协议，主要用在对于 master 主 (或者多个master) 与一个或者多个 slave 从设备之间的通信。  </p>
+<a id="more"></a>
+<h1 id="I2C-简要介绍"><a href="#I2C-简要介绍" class="headerlink" title="I2C 简要介绍"></a>I2C 简要介绍</h1><p>I2C 全称 Inter-IC，由 Philip 公司在 80 年代发展起来，是一种简单的，低、中速的串行双向两线总线串口协议，包括 serial data (<strong>SDA</strong>) 和 serial clock (<strong>SCL</strong>)。其中 SDA 传输数据，SCL 为时钟。至今，I2C 已经是一种全球工厂的标准，被用在许多主要的 IC 制造中。特点包括：可以有多个主设备，支持主从通信模式，在同一时间，只能由两个设备占据总线，每个设备被唯一的地址编码。</p>
+<p><img src="https://i.loli.net/2019/08/12/fej25bAcDJmd4yt.png" alt="Example I2C Bus.png"></p>
+<p>图中给出了一个嵌入式系统中应用 I2C 的例子，其中包括一个主设备和多个从设备。Microcontroller or Processor 作为主设备控制连接在总线上的其他I2C设备。所有从设备都只用两个 pin 与主设备相接。</p>
+<h1 id="电学特性"><a href="#电学特性" class="headerlink" title="电学特性"></a>电学特性</h1><p>I2C 在同一条线上使用的是 Open-Drain/Open-Collector 加上一个 buffer ，这使得双向的数据流可以在一条单独的数据线上传输。</p>
+<h2 id="用在双向通信的-open-drain-设备"><a href="#用在双向通信的-open-drain-设备" class="headerlink" title="用在双向通信的 open-drain 设备"></a>用在双向通信的 open-drain 设备</h2><p>Open-Drain 是指一种可以把总线拉到一个电压(通常是地)，或者释放总线，让它被一个上拉电阻拉高的输出。  </p>
+<p><img src="https://i.loli.net/2019/08/12/StPm4yGRcEUpMDe.png" alt="open-drain.png">  </p>
+<p>图中给出了一个主从设备在SDA/SCL线上简单的示意图，包含一个 buffer 用来读取输入数据，一个下拉 mos 管来传输数据。这种设备只能够下拉到低或者上拉到高，这个原理导致了双向通信的产生。  </p>
+<h3 id="Open-Drain-下拉总线"><a href="#Open-Drain-下拉总线" class="headerlink" title="Open-Drain 下拉总线"></a>Open-Drain 下拉总线</h3><p><img src="https://i.loli.net/2019/08/12/1cAaBiqhboS3rtK.png" alt="open-drain-pull-down.png"><br>如上文所诉，Open-Drain 能够将总线拉低， 或者释放总线让它被上拉电阻拉高，图中显示了将总线拉低时的电流走向。当我们想要逻辑部分传输一个低信号时，下拉 mos 管将被激活，这会导致其与地短接，从而使得总线被拉低。</p>
+<h3 id="Open-Drain-释放总线"><a href="#Open-Drain-释放总线" class="headerlink" title="Open-Drain 释放总线"></a>Open-Drain 释放总线</h3><p><img src="https://i.loli.net/2019/08/12/IBPDUvluGVY1KX9.png" alt="open-drain-releasing.png"><br>当主设备或者从设备想要传输一个高的逻辑时，可以选择关掉下拉 mos 管，从而使得电流只能从上方通过，然后由上拉电阻拉高，图中显示了这种情况下的电流走向。</p>
+<h1 id="I2C-串口"><a href="#I2C-串口" class="headerlink" title="I2C 串口"></a>I2C 串口</h1><h2 id="I2C-的一般操作"><a href="#I2C-的一般操作" class="headerlink" title="I2C 的一般操作"></a>I2C 的一般操作</h2><p>I2C 总线是一种双向串口标准，它使用被称为主设备的控制器来与其他从设备通信。从设备只有在被主设备“叫到”地址的时候才会传输数据。每一个连接在同一个 I2C 总线上的设备都有一个唯一的地址，许多的从设备需要进行配置来设置它的行为。这通常在主设备访问具有唯一寄存器地址的从设备的内部寄存器映射的时候完成。另外，一个设备可以有一个或者多个寄存器来存储或者写入数据。  </p>
+<p>物理上的 I2C 串口包括两条总线，serial clock (SCL) 和 serial data (SDA)。这两条线都需要通过一个上拉电阻连接到 Vcc。关于上拉电阻，它的大小是由 I2C 线上的电容所决定的，想知道具体的计算方式，可以参考 TI 的 SLVA689 文档。只有在总线空闲时才能够传输数据，在 STOP 信号之后，SDA 和 SCL 线都保持高的情况下，被认为时总线空闲状态。<br>一般主设备与从设备通信有以下两种情况：</p>
+<p>1 主设备想要传输数据到从设备：  </p>
+<ul>
+<li>主设备发送一个 START 信号然后寻址到想要的从设备地址</li>
+<li>主设备将数据传输到从设备</li>
+<li>主设备以 STOP 信号停止传输  </li>
+</ul>
+<p>2 主设备想要接受或者读取从设备中的数据：  </p>
+<ul>
+<li>主设备发送一个 START 信号，然后寻址到想要读取的从设备</li>
+<li>主设备传输想要读的寄存器地址到从设备</li>
+<li>主设备从从设备那里接受数据</li>
+<li>主设备以 STOP 信号停止传输</li>
+</ul>
+<h3 id="START-和-STOP"><a href="#START-和-STOP" class="headerlink" title="START 和 STOP"></a>START 和 STOP</h3><p><img src="https://i.loli.net/2019/08/12/qngbJRcL2GNlUxE.png" alt="I2C_START_STOP.png"><br>I2C 通信中，由主设备发送一个 START 信号表示开始，发送一个 STOP 信号表示停止。当 SCL 线为高的时候，如果 SDA 线有一个从高到低的变化，这就是一个 START 信号。当 SCL 线为高的时候，如果 SDA 线有一个从低到高的变化，那么这就是一个 STOP 信号。</p>
+<h3 id="重新开始信号-Repeated-START-Sr"><a href="#重新开始信号-Repeated-START-Sr" class="headerlink" title="重新开始信号 Repeated START (Sr)"></a>重新开始信号 Repeated START (Sr)</h3><p>重新开始信号与 START 信号类似，不过它被用在代替一个 STOP 接着一个 START 信号的情况。它与 START 信号很像，但是又有所不同，因为它是发生在 STOP 信号之前的(当总线为忙)。这在主设备想要开始一个新的通信，但是又不想让总线由于 STOP 信号处于空闲状态时很有用，因为当总线由于 STOP 信号处于空闲状态时，这有可能会使得现在的主设备失去对总线的控制(在多主设备的环境下)。</p>
+<h2 id="数据有效性和字节格式"><a href="#数据有效性和字节格式" class="headerlink" title="数据有效性和字节格式"></a>数据有效性和字节格式</h2><p><img src="https://i.loli.net/2019/08/12/5S2QURpLqgCKXZO.png" alt="Single_byte_data_transfer.png">  </p>
+<p>一位数据将在 SCL 的每个时钟脉冲时传输，在 SDA 线上一个字节包括八位数据，一个字节可能是表示一个设备的地址，寄存器的地址，写入从设备或者从从设备中读取的数据。数据从 Most Significant Bit (MSB) 开始传输，任何在 START 和 STOP 之间字节数据都可以从主设备传输到从设备。在 SDA 线上的数据，必须在 SCL 线为稳定保持高的情况下传输，如果不稳定的话，可能会符合 START 或者 STOP 的触发条件。  </p>
+<h2 id="应答信号-ACK-amp-NACK"><a href="#应答信号-ACK-amp-NACK" class="headerlink" title="应答信号 ACK &amp; NACK"></a>应答信号 ACK &amp; NACK</h2><p>任何一个字节的数据(包括地址)后面都会跟随一个从接收端发送的 ACK 应答信号。ACK 信号使得接收端与发送端能够进行通信，从而知道数据是否被成功的接收，或者有没有另一个信号被发送。  </p>
+<p>在接收端发送 ACK 信号之前，发送端需要释放 SDA 线。接收端需要在 ACK/NACK 的时钟周期内下拉 SDA 线来发送一个 ACK 信号，所以在这个时钟周期为高的时候，SDA 线为低(需要考虑 Setup- &amp; Hold- time)。<br><img src="https://i.loli.net/2019/08/12/vpyK4APwLFekhSC.png" alt="NACK.png"><br>当 SDA 线在 ACK/NACK 的时钟周期内保持为高的时候，这就是一个 NACK 信号，这里有几种产生 NACK 信号的情况：  </p>
+<p>1 接收端无法接收或者发送，因为它正在执行一些实时功能，并且没有准备好于注设备通信。<br>2 在传输过程中，接收端收到了它无法理解的数据或者命令。<br>3 在传输过程中，接收端无法接收更多的数据。<br>4 主设备作为接收端时，向从设备发送“我已经接收完了数据”信号。</p>
+<h1 id="I2C-数据传输"><a href="#I2C-数据传输" class="headerlink" title="I2C 数据传输"></a>I2C 数据传输</h1><p>数据的传输或者接收是通过对从设备的寄存器进行读取或者写入操作来实现的。</p>
+<p>寄存器是从设备内存中包含信息的位置，无论是配置信息，还是一些要发送回主机的采样数据。主设备必须将信息写入这些寄存器，以指示从设备执行任务。</p>
+<p>虽然在 I2C 从设备中有寄存器是很常见的，但是请注意，并非所有的从设备都有寄存器。有些设备很简单，只有一个寄存器，所以想要写入数据的话，只需要在从设备的地址信息之后传输数据就行，而不需要传输寄存器的地址，类似的例子有 8 位的 I2C 开关，它只需要一位的信息去打开或者关闭通道，所以只需要一个寄存器，主设备只需要在地址信息之后直接传入要写入的数据就行。</p>
+<h2 id="在-I2C-总线中写入从设备"><a href="#在-I2C-总线中写入从设备" class="headerlink" title="在 I2C 总线中写入从设备"></a>在 I2C 总线中写入从设备</h2><p><img src="https://i.loli.net/2019/08/12/S9mUE65iRbTlZcp.png" alt="Write_to_Slave.png"></p>
+<p>在写入过程中，主设备将发送一个 START 信号和一个从设备的地址(普通的为 7bits )加一位 R/W bit，这一位被设置为 0 来表示写入。在从设备发送 ACK 应答信号之后，主设备将会发送希望写入的寄存器的寄存器地址，接着，从设备将再次发送 ACK 应答信号，让这个主设备知道它已经准备好了。之后，主设备将开始发送数据到从设备，直到主设备将数据发送完(很多时候只是一个字节)，然后主设备将由一个 STOP 信号来停止传输。</p>
+<h2 id="在-I2C-总线中读取从设备"><a href="#在-I2C-总线中读取从设备" class="headerlink" title="在 I2C 总线中读取从设备"></a>在 I2C 总线中读取从设备</h2><p><img src="https://i.loli.net/2019/08/12/mb16cisn4ZAEwte.png" alt="Read_from_Slave.png"></p>
+<p>从从设备中读取数据于写入数据非常相似，为了从从设备中读取，主设备首先要指定它希望从中读取的从设备。这通过主设备发送地址和 R/W bit 为 0 (写入)，接着跟上希望读取的寄存器地址来完成。一旦从设备在此之后发送了 ACK 应答，主设备将再次发送一个 START 信号，然后跟上从设备地址于 R/W 为 1 (读取)。这个时候，从设备将相应读取操作，然后主设备释放 SDA 线，由从设备来控制 SDA 线传输数据，但是主设备仍然会继续提供时钟 SCL。在这个情况下，主设备变成了接收端，从设备编程了发送端。</p>
+<h1 id="知识补充"><a href="#知识补充" class="headerlink" title="知识补充"></a>知识补充</h1><h2 id="I2C-协议中的数据"><a href="#I2C-协议中的数据" class="headerlink" title="I2C 协议中的数据"></a>I2C 协议中的数据</h2><p><img src="https://i.loli.net/2019/08/12/tjPUS1Xinqzw2oA.png" alt="I2C_by_the_numbers.png"></p>
+<p>I2C 中共有三个模式，由上图列出，值得一提的是，I2C 一般是使用 7 bit来寻址，实际上也有 10 bit 的模式，能够使得 I2C 连接更多的设备。下图给出 7 bit 和 10 bit 的标准。</p>
+<p><img src="https://i.loli.net/2019/08/12/dSPpvaNHU5n8EXt.png" alt="7bit_10bit_address.png"></p>
+<h2 id="I2C-协议中的-Arbitration"><a href="#I2C-协议中的-Arbitration" class="headerlink" title="I2C 协议中的 Arbitration"></a>I2C 协议中的 Arbitration</h2><p>如果由两个主设备在同一个总线上，那么有一种情况可能会发生，那就是它们两个都想在同一时间控制总线，那么这种情况是怎么解决的呐？</p>
+<p><img src="https://i.loli.net/2019/08/12/tpLs9ROYArUwD5v.png" alt="arbitration.png"></p>
+<p>当这种情况发生的时候，他们将会产生几个时钟周期的 delay，然后这个时候，两个主设备将会被控制成，一个拉高，一个保持为低，此时拉高的作为主设备，在这个主设备的工作完成后，再执行另一个主设备的工作。</p>
+<p>更多关于 I2C 的细节可以参考 TI 的 AN10216-01 文档。</p>
+
+      
+    </div>
+    
+    
+    
+
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    
+
+    
+
+    
+
+<div>
+	    <p id="div-border-left-red">
+        <b><span>本文标题:</span><a href="/2019/07/24/1/">对 I2C 总线协议的理解</a></b><br>
+        <b><span>文章作者:</span><a href="/" title="访问 LoveKawhi 的个人博客">LoveKawhi</a></b><br>
+	      <b>本文基于<a target="_blank" title="Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)" href="http://creativecommons.org/licenses/by-sa/4.0/"> 知识共享署名-相同方式共享 4.0 </a>国际许可协议发布</b><br>
+	      <span>
+	      <b>本文地址: </b><a href="/2019/07/24/1/" title="对 I2C 总线协议的理解">http://lovekawhi.top/2019/07/24/1/</a><br>
+        <b>转载请注明出处, 谢谢！</b>
+	      </span>
+	    </p>
+</div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/I2C/" rel="tag"><i class="fa fa-tag"></i> I2C</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/20/1/" rel="next" title="Markdown 语法的简要规则">
+                <i class="fa fa-chevron-left"></i> Markdown 语法的简要规则
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/09/1/" rel="prev" title="PCM的A-law和μ-law的理解">
+                PCM的A-law和μ-law的理解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  
+
+
+
+    <div class="post-spread">
+      
+        <!--MOB SHARE BEGIN-->
+<div class="-hoofoo-share-title">分享到: </div>
+<div class="-hoofoo-share-buttons">
+    <div class="-mob-share-weibo -hoofoo-share-weibo -hoofoo-share-ui-button"><i class="fa fa-weibo" aria-hidden="true"></i></div>
+    <div class="-mob-share-weixin -hoofoo-share-weixin -hoofoo-share-ui-button"><i class="fa fa-weixin" aria-hidden="true"></i></div>
+    <div class="-mob-share-qq -hoofoo-share-qq -hoofoo-share-ui-button"><i class="fa fa-qq" aria-hidden="true"></i></div>
+    <div class="-mob-share-twitter -hoofoo-share-twitter -hoofoo-share-ui-button"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+    <div class="-hoofoo-share-more -hoofoo-share-ui-button -mob-share-open"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+</div>
+<div class="-mob-share-ui" style="display: none">
+    <ul class="-mob-share-list">
+        <li class="-mob-share-weibo"><p>新浪微博</p></li>
+        <li class="-mob-share-weixin"><p>微信</p></li>
+        <li class="-mob-share-qzone"><p>QQ空间</p></li>
+        <li class="-mob-share-qq"><p>QQ好友</p></li>
+        <li class="-mob-share-tencentweibo"><p>腾讯微博</p></li>
+        <li class="-mob-share-renren"><p>人人网</p></li>
+        <li class="-mob-share-kaixin"><p>开心网</p></li>
+        <li class="-mob-share-douban"><p>豆瓣</p></li>
+        <li class="-mob-share-youdao"><p>有道云笔记</p></li>
+        <li class="-mob-share-mingdao"><p>明道</p></li>
+        <li class="-mob-share-pengyou"><p>朋友网</p></li>
+        <li class="-mob-share-facebook"><p>Facebook</p></li>
+        <li class="-mob-share-twitter"><p>Twitter</p></li>
+        <li class="-mob-share-pocket"><p>Pocket</p></li>
+        <li class="-mob-share-google"><p>Google+</p></li>
+        <li class="-mob-share-tumblr"><p>Tumblr</p></li>
+        <li class="-mob-share-instapaper"><p>Instapaper</p></li>
+        <li class="-mob-share-linkedin"><p>Linkedin</p></li>
+    </ul>
+    <div class="-mob-share-close">取消</div>
+</div>
+<div class="-mob-share-ui-bg"></div>
+<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=2bc2bd58a9252"></script>
+<!--MOB SHARE END-->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://i.loli.net/2019/08/12/kMsqO1cIpmv7fDh.jpg" alt="LoveKawhi">
+            
+              <p class="site-author-name" itemprop="name">LoveKawhi</p>
+              <p class="site-description motion-element" itemprop="description">一时起意，用于装X</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/ZhitaoYang" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:11510303@mail.sustech.edu.cn" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/darkfir85357123" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#I2C-简要介绍"><span class="nav-number">1.</span> <span class="nav-text">I2C 简要介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#电学特性"><span class="nav-number">2.</span> <span class="nav-text">电学特性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#用在双向通信的-open-drain-设备"><span class="nav-number">2.1.</span> <span class="nav-text">用在双向通信的 open-drain 设备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Open-Drain-下拉总线"><span class="nav-number">2.1.1.</span> <span class="nav-text">Open-Drain 下拉总线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Open-Drain-释放总线"><span class="nav-number">2.1.2.</span> <span class="nav-text">Open-Drain 释放总线</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#I2C-串口"><span class="nav-number">3.</span> <span class="nav-text">I2C 串口</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I2C-的一般操作"><span class="nav-number">3.1.</span> <span class="nav-text">I2C 的一般操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#START-和-STOP"><span class="nav-number">3.1.1.</span> <span class="nav-text">START 和 STOP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重新开始信号-Repeated-START-Sr"><span class="nav-number">3.1.2.</span> <span class="nav-text">重新开始信号 Repeated START (Sr)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据有效性和字节格式"><span class="nav-number">3.2.</span> <span class="nav-text">数据有效性和字节格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应答信号-ACK-amp-NACK"><span class="nav-number">3.3.</span> <span class="nav-text">应答信号 ACK &amp; NACK</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#I2C-数据传输"><span class="nav-number">4.</span> <span class="nav-text">I2C 数据传输</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#在-I2C-总线中写入从设备"><span class="nav-number">4.1.</span> <span class="nav-text">在 I2C 总线中写入从设备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在-I2C-总线中读取从设备"><span class="nav-number">4.2.</span> <span class="nav-text">在 I2C 总线中读取从设备</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#知识补充"><span class="nav-number">5.</span> <span class="nav-text">知识补充</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I2C-协议中的数据"><span class="nav-number">5.1.</span> <span class="nav-text">I2C 协议中的数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#I2C-协议中的-Arbitration"><span class="nav-number">5.2.</span> <span class="nav-text">I2C 协议中的 Arbitration</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="heart">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LoveKawhi</span>
+
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+
+
+<span id="busuanzi_container_site_pv">
+   总访问量:<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共4.7k字</span>
+</div>
+
+
+  <!--<div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>-->
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+  <script type="text/javascript" color="255,192,203" opacity="0.7" zindex="-2" count="50" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  
+<script type="text/javascript">
+    //微信二维码点击背景关闭
+    $('body').delegate('.-mob-share-weixin-qrcode-bg','click', function(){
+         $(".-mob-share-weixin-qrcode-close").trigger("click");
+    }); 
+</script>
+
+  <!--坖蝌-->
+  <script type="text/javascript" src="/js/src/dytitle.js"></script>
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
+    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+    <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  
+
+</body>
+</html>
